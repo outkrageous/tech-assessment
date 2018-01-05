@@ -1,0 +1,112 @@
+# General Linux #
+
+1. How do you determine how much CPU is being utilized at the system level?
+
+        Most basic way would be to use the 'top' command.
+
+1. How do you determine how much CPU is being utilized by a specific process?
+
+        If you know the PID of the process in question: ps -p <PID> -o %cpu
+        To find the PID of a process by name I usually us: ps ax | grep <name>
+
+1. How would your answers to question 1 and 2 change if we were interested in looking at memory consumption?
+
+        system level I use 'free'
+        process level I use: ps -p <PID> -o %mem
+
+1. How would your answers to question 1 and 2 change if we were interested in looking at disk or block input/output?
+
+        system level: df has been as useful of a command that I've required in my experience
+        process level: Honestly not sure on this one without looking it up.
+
+1. How would your answers to question 1 and 2 change if we were interested in looking at network utilization?
+
+        system level: I normally use ifstat.
+        process level: I'm not really sure how you could do that with system utils.  There are opensource utils that you could
+        use to do such a thing.  nethog is one.
+
+1. What is the difference between a process' virtual set size and resident set size? How does this affect the system as a whole?
+
+        RSS is memory in the RAM of the system.  VSS is the portion of memory that lives on the disk and is managed by the kernel
+
+
+1. What does strace do? How would you use it to debug a misbehaving process?
+
+        I've used strace in the past as a sort of debugger. It's a basic way of seeing sys calls and what they return. I can think
+        of only a few instances of needing to use this.  I guess if you don't have source code it can be informative.
+
+1. Name a utility you have used to do kernel level tracing.
+
+        Honestly I've never ran into and instance where I needed to do this.
+
+1. How would you read a log file located in `/var/log/messages`?
+
+        Not sure I quite understand the question.  One could tail the log or cat the log to read it.  If you're looking for
+        the case that someone is looking at this log and wondering how to read it they'll be looking at a general log of the system.
+
+
+1. If I told you to use the command `jabberwocky`, how can you find its
+   documentation *without using Google?*
+
+        I would try 'man jabberwocky'.  Sometimes 'jabberwocky --help' can point you in the right direction too.
+
+1. How do you redirect `stderr` and `stdout` to the same file?
+
+        You can say 'command &> somefile'
+
+1. How do you background a currently running long executing process?  How do you bring the process
+   back to the foreground?
+
+        This is the first question I've been completely clueless on.  In answering it I would just be gathering all my knowlege
+        from google to do so.  I don't want to give the impression that I'm a master level linux user.
+
+1. Given a log file located at `/var/log/mydaemon.log` which contains an
+   indefinite number of lines like:
+
+        Fri Jun 12 2014 12:00:01.345 user 'alice' logged in
+        Fri Jun 12 2014 14:11:01.112 user 'bob' logged in
+        Sun Jun 14 2014 00:11:01.112 ERROR: disk full
+        Sun Jun 14 2014 01:05:10.100 ERROR: host is down
+        Sun Jun 14 2014 08:33:33.333 successful backup
+
+    How would you print the twenty most recently logged lines that contain error
+ messages?
+
+        I think you need a combination of grep and tail.  I haven't tried this out but maybe grep <error> <file> | tail -n 20
+
+1. What is the purpose/use of `procfs`?  Where do you look to find `procfs`?
+
+        I don't have a great understanding of this but procfs is a sort of file system for the kernel.  I believe it's mounted
+        somewhere, maybe /proc.
+
+1. What are the steps for configuring and executing a passwordless login
+   session to a remote Linux system?
+
+        Generally speaking here are the steps:
+        -Generate an ssh key on your system using ssh-keygen tool
+        -Copy the ssh key to the .ssh dir on the remote system under the user you want to ssh in as.
+
+
+# Networking #
+
+1. What are important differences between TCP and UDP protocols?
+
+        TCP has verification in place to ensure all packets are received.
+        UDP does the same as TCP just doesn't do verification. UDP is used for speed.
+
+1. Please provide basic troubleshooting steps for isolating connectivity
+   problem between two Linux hosts, using only the shell.
+
+        ifconfig to make sure your connected and have ip, dns, all that fun stuff
+        Then try to ping the remote host.  This will tell you if it is responding.
+        Then check firewall. It could be blocking your port i.e 22 for ssh
+        Check ssh_config
+        Check to make sure your ssh service is installed and running
+        Restart ssh service with systemctl or service
+        Restart network
+        If you have access to the remote system you can use netstat and grep for listening ports
+
+
+1. How do you list a system's currently open ports and/or active connections?
+
+        netstat
