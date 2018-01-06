@@ -73,6 +73,9 @@ class csvOps:
             print(key, val)
 
     def createJson(self, filename, json_file):
+        """
+        create json file from a csv file specified
+        """
         data = []
         with open(filename) as file:
             for row_data in DictReader(file):

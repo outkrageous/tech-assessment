@@ -188,9 +188,13 @@
 
     * Calculate the total number of orders per customer.
             Implemented in print_order_number.py
+
     * Calculate the average cost of orders per customer.
+            Only did sort of psuedocode for this in calc_avg_cost.py
 
  Once the CSV has been loaded into a data model, create a report file containing
  the desired information from above in either JSON or XML format. You may use built-in
  JSON or XML libraries, and other built-in functions like sorting & searching in the language
  of your choice. (This includes using psuedocode.) You should provide your code as text in the same file as your previous answers.
+
+ 
