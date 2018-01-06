@@ -16,21 +16,5 @@ def getCustomerListSortedByName(file_name):
     csv_handler.writeCSVFile('sort_by_name.csv', sorted_data)
     csv_handler.printCSVData(sorted_data)
 
-def printOrdersPerCustomer(file_name):
-    """
-    Prints out the number of orders per customer
-    """
-    csv_handler = csvOps()
-    dict_data = csv_handler.createDictFromCsvColumn(file_name, 'Customer Name')
-    counted_data = csv_handler.countDataInColumn(dict_data)
-    csv_handler.formatCountedDataAndPrint(counted_data)
-
-def calcAverageCostOfOrderPerCustomer(file_name):
-    """
-    Does all the things
-    """
-
-
-#getCustomerListSortedByName('orders.csv')
 printOrdersPerCustomer('orders.csv')
 

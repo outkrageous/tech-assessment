@@ -15,11 +15,15 @@ the interview process.
 # General Linux #
 
 1. How do you determine how much CPU is being utilized at the system level?
+####Most basic way would be to use the 'top' command.  
 
 1. How do you determine how much CPU is being utilized by a specific process?
+####If you know the PID of the process in question: ps -p <PID> -o %cpu
+####To find the PID of a process by name I usually us: ps ax | grep <name>
 
 1. How would your answers to question 1 and 2 change if we were interested in looking at memory consumption?
-
+####system level I use 'free' 
+####process level I use: ps -p <PID> -o %mem
 1. How would your answers to question 1 and 2 change if we were interested in looking at disk or block input/output?
 
 1. How would your answers to question 1 and 2 change if we were interested in looking at network utilization?

@@ -4,6 +4,7 @@ import operator
 import csv
 from csv import DictReader
 from collections import Counter
+import json
 
 class csvOps:
 
@@ -49,13 +50,37 @@ class csvOps:
         print(data)
 
     def createDictFromCsvColumn(self, file_name, header_id):
+        """
+        This feels like cheating to use Dictreader but its efficient.
+        Method takes the filename and header id and creates a dictionary
+        from the header id column
+        """
         with open(file_name) as csv_file:
             column = [row[header_id] for row in DictReader(csv_file)]
         return column
 
     def countDataInColumn(self, dict_data):
+        """
+        This too feels like cheating. Uses the counter util to count the dictionary
+        """
         return Counter(dict_data)
 
     def formatCountedDataAndPrint(self, counted_list):
+        """
+        Formats the counted data in the dictionary to be a little more readable
+        """
         for key, val in counted_list.items():
             print(key, val)
+
+    def createJson(self, filename, json_file):
+        data = []
+        with open(filename) as file:
+            for row_data in DictReader(file):
+                data.append(row_data)
+
+        json_data = json.dumps(data)
+
+        with open(json_file, 'w') as newfile:
+            for line in json_data:
+                newfile.write(line)
+
