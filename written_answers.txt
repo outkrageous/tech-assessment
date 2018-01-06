@@ -124,7 +124,7 @@
 1. For a directory containing multiple files, implement a way to scan each file
    for the string "foobar" and replace it with "fubar"
 
-        This is implemented in foobar.py
+        This is implemented in code in foobar.py
         Edit line 53 for the directory you want your foo files.  (I should have made these variables ones you pass in)
         Run foobar.py
 
@@ -197,4 +197,3 @@
  JSON or XML libraries, and other built-in functions like sorting & searching in the language
  of your choice. (This includes using psuedocode.) You should provide your code as text in the same file as your previous answers.
 
- 
